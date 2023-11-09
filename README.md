@@ -62,7 +62,7 @@ Sarthak Kangane
 
 
 - Upon launching the application, you can see various areas of pune city
-- Each area has two options i.e. rent price or sale price
+- Each area has two options i.e. rent price or purchase price
 - On selecting any of the options fill a form which to enter the details of your requirements.
 - You can now see the predicted prices along with the comparisions
 ## Future scope
