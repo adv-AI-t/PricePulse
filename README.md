@@ -54,7 +54,7 @@ Sarthak Kangane
 3. Run the application:
 
    ```bash
-   python app.py
+   python server.py
    ```
 
     
