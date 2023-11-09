@@ -1,0 +1,154 @@
+{% include "header.html" %}
+<head xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">-->
+    <style type="text/css">
+    </style>
+</head>
+
+<header class="masthead" style="background-image: url('{{ area[1] }}'); margin-bottom:0;" data-aos="fade-in">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center" data-aos="fade">
+<table>
+    <tr>
+
+    <td style="padding :20px;">
+
+                <div class="page-heading" style="align:left;">
+                    <h1 data-aos="fade">{{ area[0] }}</h1>
+                    <h2>Rent Predictor</h2>
+                </div>
+                <br>
+                <br>
+    </td>
+          <td style="padding :20px;">
+        <div class="container px-4 px-lg-5" data-aos="fade-up">
+
+            <div class="form-container" data-aos="fade-up">
+                <h3>Choose your Preferences</h3>
+                <hr data-aos="fade-right">
+               <form id="propertyForm" action="/area/{{ num }}" method="post" data-aos="fade-up">
+                    <table cellspacing="100" data-aos="fade-up">
+                        <tr>
+                            <td>
+                                <div class="form-check form-check-inline">
+                                    <input checked class="form-check-input" type="radio" name="Bedrooms" id="inlineRadio4" value="1">
+                                    <label class="form-check-label" for="inlineRadio4">1 BHK</label>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="Bedrooms" id="inlineRadio5" value="2">
+                                    <label class="form-check-label" for="inlineRadio5">2 BHK</label>
+                                </div>
+                            </td>
+
+                                      <td>
+                                        <div class="form-check form-check-inline">
+                                          <input class="form-check-input" type="radio" name="Bedrooms" id="inlineRadio6" value="3">
+                                          <label class="form-check-label" for="inlineRadio6">3 BHK</label>
+                                        </div>
+                                      </td>
+
+                                    </tr>
+
+                                   <br><br>
+                                  <tr>
+                                      <td>
+                                        <div class="form-check form-check-inline">
+                                          <input checked class="form-check-input" type="radio" name="furniture" id="inlineRadio1" value="1 0 0">
+                                          <label class="form-check-label" for="inlineRadio1">Furnished</label>
+                                        </div>
+                                      </td>
+
+                                      <td>
+                                        <div class="form-check form-check-inline">
+                                          <input class="form-check-input" type="radio" name="furniture" id="inlineRadio2" value="0 1 0">
+                                          <label class="form-check-label" for="inlineRadio2">Semi Furnished</label>
+                                        </div>
+                                      </td>
+
+                                      <td>
+                                        <div class="form-check form-check-inline">
+                                          <input class="form-check-input" type="radio" name="furniture" id="inlineRadio3" value="0 0 1">
+                                          <label class="form-check-label" for="inlineRadio3">Unfurnished</label>
+                                        </div>
+                                      </td>
+                                    </tr>
+
+                                   <tr>
+
+
+                                   </tr>
+                                   <tr>
+                                       <td>
+                                        <input type="text" placeholder="Area in Sq.ft" name="SquareFeet" id="areaInput" required>
+
+                                      </td>
+                                       <td>
+                                                 <input type="email" placeholder="email" name="email">
+                                       </td>
+                                   </tr>
+                                             <div id="errorMessage"></div>
+                                  </table>
+
+                                <input type="submit"  name = "Submit" value="Submit">
+
+                           </form>
+
+                        </div>
+
+
+            </div>
+    </td>
+    </tr>
+    </table>
+        </div>
+    </div>
+</header>
+  <main class="mb-4">
+
+      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+                    <script>
+                        AOS.init({
+                            duration: 1000, // Animation duration in milliseconds
+                            delay: 200,      // Delay between animations in milliseconds
+                          });
+
+                    </script>
+      <script>
+    var form = document.getElementById("propertyForm");
+    var areaInput = document.getElementById("areaInput");
+
+    form.addEventListener("submit", function(event) {
+        var selectedBedrooms = document.querySelector('input[name="Bedrooms"]:checked').value;
+        var area = parseInt(areaInput.value);
+
+        if (selectedBedrooms === "1" && (area < 300 || area > 700)) {
+            event.preventDefault();
+            var errorMessage = "Note: 1 BHK properties should ideally have an area between 300 and 700 sq.ft., and your selection might not provide accurate results.";
+            alert(errorMessage);
+            styleAlert(errorMessage);
+        } else if (selectedBedrooms === "2" && (area < 600 || area > 1100)) {
+            event.preventDefault();
+            var errorMessage = "Note: 2 BHK properties should ideally have an area between 600 and 1100 sq.ft., and your selection might not provide accurate results.";
+            alert(errorMessage);
+            styleAlert(errorMessage);
+        } else if (selectedBedrooms === "3" && (area < 1000 || area > 1700)) {
+            event.preventDefault();
+            var errorMessage = "Note: 3 BHK properties should ideally have an area between 1000 and 1700 sq.ft., and your selection might not provide accurate results.";
+            alert(errorMessage);
+            styleAlert(errorMessage);
+        }
+    });
+
+    function styleAlert(errorMessage) {
+        var dialog = document.querySelector('.swal-modal');
+        dialog.style.backgroundColor = '#ffcccc';
+        dialog.style.color = '#ff0000';
+    }
+</script>
+        </main>
+
