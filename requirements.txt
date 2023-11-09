@@ -1,2 +1,6 @@
 Flask
 Requests
+pandas
+pywhatkit
+scikit-learn
+textblob
