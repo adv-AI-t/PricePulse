@@ -4,7 +4,7 @@ import csv
 area_data = []
 
 # Read data from the CSV file
-with open('PricePulse/Data/HTML data/area data.csv', 'r') as csvfile:
+with open('Data/HTML data/area data.csv', 'r') as csvfile:
     # Create a CSV reader object
     csvreader = csv.reader(csvfile)
 
